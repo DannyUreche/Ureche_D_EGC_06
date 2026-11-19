@@ -36,12 +36,15 @@ public sealed class SceneObject
     {
         get
         {
-            // TODO 6.6* (facultativ): ModelMatrix * Parent.WorldMatrix, dacă există părinte.
-            // (În OpenTK matricele se înmulțesc în ordinea aplicării, de la stânga la dreapta.)
-            return Transform.ModelMatrix;   // provizoriu: părintele este ignorat
+            // 6.6* (facultativ): daca exista parinte, intai transformarea proprie,
+            // apoi transformarea parintelui fata de lume (ordinea aplicarii: Model * World(parinte))
+            if (Parent != null)
+            {
+                return Transform.ModelMatrix * Parent.WorldMatrix;
+            }
+            return Transform.ModelMatrix;
         }
     }
-
     /// <summary>Poziția obiectului în lume (ultima linie a matricei WorldMatrix).</summary>
     public Vector3 WorldPosition => WorldMatrix.Row3.Xyz;
 
