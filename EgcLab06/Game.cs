@@ -1,3 +1,4 @@
+//using Egc.Teme;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -66,6 +67,8 @@ public class Game : GameWindow
 
         _scenes.Add(new LabScene());
         // TEMA: adăugați aici scena (sau scenele) temei; Tab trece de la o scenă la alta.
+        _scenes.Add(new DodgeScene());   // TEMA: varianta B
+        
 
         foreach (Scene scene in _scenes)
         {
