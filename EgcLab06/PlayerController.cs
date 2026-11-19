@@ -68,6 +68,27 @@ public sealed class PlayerController
         //       apoi _charging = false și _charge = 0.
 
 
+        // (a) pe sol, la APASAREA actiunii Jump: incepe incarcarea
+        if (OnGround && input.WasPressed(Actions.Jump))
+        {
+            _charging = true;
+            _charge = 0.0f;
+        }
+
+        // (b) cat timp _charging si actiunea este TINUTA: incarcarea creste
+        if (_charging && input.IsDown(Actions.Jump))
+        {
+            _charge = MathF.Min(_charge + dt / ChargeTime, 1.0f);
+        }
+
+        // (c) la ELIBERARE (daca se incarca): saltul porneste, cu atat mai sus cu cat s-a incarcat mai mult
+        if (_charging && input.WasReleased(Actions.Jump))
+        {
+            _verticalSpeed = Easing.Lerp(MinJumpSpeed, MaxJumpSpeed, _charge);
+            _charging = false;
+            _charge = 0.0f;
+        }
+
 
         // 3. Gravitația (metoda Euler semi-implicită): întâi viteza, apoi poziția.
         if (!OnGround || _verticalSpeed > 0.0f)
