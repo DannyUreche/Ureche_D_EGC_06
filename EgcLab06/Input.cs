@@ -70,11 +70,11 @@ public sealed class Input
         AnyKey(action, k => _keyboard!.IsKeyPressed(k)) || AnyButton(action, b => _mouse!.IsButtonPressed(b));
 
     /// <summary>ELIBERATĂ ACUM: o tastă a acțiunii era apăsată în cadrul anterior și e liberă în acesta.</summary>
-    public bool WasReleased(string action)
-    {
+
+
         // TODO 6.4 (a): după modelul lui WasPressed, cu IsKeyReleased și IsButtonReleased.
-        return false;   // provizoriu
-    }
+ public bool WasReleased(string action) =>
+    AnyKey(action, k => _keyboard!.IsKeyReleased(k)) || AnyButton(action, b => _mouse!.IsButtonReleased(b));
 
     /// <summary>
     /// O AXĂ formată din două acțiuni opuse: -1 (doar <paramref name="negative"/> ținută),
