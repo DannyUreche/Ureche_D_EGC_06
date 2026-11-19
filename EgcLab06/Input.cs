@@ -80,11 +80,10 @@ public sealed class Input
     /// O AXĂ formată din două acțiuni opuse: -1 (doar <paramref name="negative"/> ținută),
     /// +1 (doar <paramref name="positive"/> ținută), 0 (niciuna sau amândouă).
     /// </summary>
-    public float Axis(string negative, string positive)
-    {
+ 
         // TODO 6.4 (b): (positive ținută ? 1 : 0) - (negative ținută ? 1 : 0)
-        return 0.0f;   // provizoriu
-    }
+    public float Axis(string negative, string positive) =>
+    (IsDown(positive) ? 1.0f : 0.0f) - (IsDown(negative) ? 1.0f : 0.0f);
 
     // --- Mouse ----------------------------------------------------------------------------
 
