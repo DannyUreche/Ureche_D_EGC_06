@@ -21,15 +21,14 @@ public static class Easing
     /// <summary>Pornește repede și frânează la sosire.</summary>
     public static float EaseOut(float t)
     {
-        // TODO 6.2 (a): 1 - (1 - t)²   (EaseIn "întoarsă")
-        return t;   // provizoriu
+        // 6.2 (a): 1 - (1 - t)²   (EaseIn "întoarsă")
+        return 1.0f - (1.0f - t) * (1.0f - t);
     }
 
-    /// <summary>Pornește încet, accelerează, apoi frânează la sosire.</summary>
     public static float EaseInOut(float t)
     {
-        // TODO 6.2 (a): t² · (3 - 2t)
-        return t;   // provizoriu
+        // 6.2 (a): t² · (3 - 2t)
+        return t * t * (3.0f - 2.0f * t);
     }
 
     /// <summary>Toate funcțiile, cu nume (pentru scena laboratorului și pentru meniuri).</summary>

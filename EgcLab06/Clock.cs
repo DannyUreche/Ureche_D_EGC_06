@@ -32,10 +32,9 @@ public sealed class Clock
     {
         RealDeltaTime = (float)realSeconds;
 
-        // TODO 6.1: timpul de joc
-        //   1. limitați pasul real la MaxDelta (Math.Min / MathF.Min);
-        //   2. în pauză pasul de joc este 0, altfel este pasul limitat înmulțit cu TimeScale.
-        DeltaTime = RealDeltaTime;   // provizoriu: timpul de joc = timpul real
+        // 6.1: timpul de joc
+        float limitedStep = MathF.Min(RealDeltaTime, MaxDelta);
+        DeltaTime = Paused ? 0.0f : limitedStep * TimeScale;
 
         TotalTime += DeltaTime;
     }
