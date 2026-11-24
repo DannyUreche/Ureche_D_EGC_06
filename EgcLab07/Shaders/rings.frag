@@ -31,10 +31,12 @@ void main()
    // TODO 7.5 (a): discul (sectiunea 6.2). inside = 1 in interior, 0 in afara.
    //   Incercati intai marginea "dura":   float inside = step(d, uRadius);
    //   apoi marginea neteda:              1.0 - smoothstep(uRadius - uSoftness, uRadius + uSoftness, d)
-   float inside = 0.0;
+   float inside = 1.0 - smoothstep(uRadius - uSoftness, uRadius + uSoftness, d);
+
    // TODO 7.5 (b): undele (sectiunea 6.3): o sinusoida a distantei, deplasata in timp, adusa in [0, 1]:
    //   0.5 + 0.5 * sin(6.2831853 * (d * uFrequency - uTime * uSpeed * 0.25))
-   float wave = 1.0;
+float wave = 0.5 + 0.5 * sin(6.2831853 * (d * uFrequency - uTime * uSpeed * 0.25));
+
 
     vec3 ringColor = mix(uColorInside * 0.35, uColorInside, wave);
     vec3 color = mix(uColorOutside, ringColor, inside);
