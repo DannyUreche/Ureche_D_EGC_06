@@ -50,9 +50,19 @@ public sealed class UniformSet
                     break;
                 case Matrix4 m:
                     shader.SetMatrix4(name, m);
+                    break;   
+
+                    // TODO 7.2: tratați și tipurile Vector2 (SetVector2), Vector3 (SetVector3)
+                    //           și bool (SetInt, cu 1 pentru true și 0 pentru false), după modelul de mai sus.
+                case Vector2 v2:
+                    shader.SetVector2(name, v2);
                     break;
-                // TODO 7.2: tratați și tipurile Vector2 (SetVector2), Vector3 (SetVector3)
-                //           și bool (SetInt, cu 1 pentru true și 0 pentru false), după modelul de mai sus.
+                case Vector3 v3:
+                    shader.SetVector3(name, v3);
+                    break;
+                case bool b:
+                    shader.SetInt(name, b ? 1 : 0);
+                    break;
                 default:
                     if (Unsupported.Add(value.GetType()))
                     {
@@ -62,6 +72,8 @@ public sealed class UniformSet
             }
         }
     }
+
+ 
 
     /// <summary>Valoarea scrisă scurt, pentru consolă.</summary>
     public static string Format(object value) => value switch
